@@ -27,7 +27,7 @@ def save_object(file_path, obj):
         # Raise a custom exception if an error occurs during the process
         raise CustomException(e, sys)
 
-def evaluate_models(X_train, y_train, X_test, y_test, models):
+def evaluate_models(X_train, y_train, X_test, y_test, models,param):
     try:
         report = {}  # Initialize an empty dictionary to store model performance scores
 
@@ -35,10 +35,10 @@ def evaluate_models(X_train, y_train, X_test, y_test, models):
             model = list(models.values())[i]  # Get the model object
 
             # Commented code for hyperparameter tuning
-            # para = param[list(models.keys())[i]]  # Get hyperparameters for the model (if defined)
-            # gs = GridSearchCV(model, para, cv=3)  # Initialize GridSearchCV for hyperparameter tuning
-            # gs.fit(X_train, y_train)  # Fit GridSearchCV on the training data
-            # model.set_params(**gs.best_params_)  # Set the best parameters found by GridSearchCV on the model
+            para = param[list(models.keys())[i]]  # Get hyperparameters for the model (if defined)
+            gs = GridSearchCV(model, para, cv=3)  # Initialize GridSearchCV for hyperparameter tuning
+            gs.fit(X_train, y_train)  # Fit GridSearchCV on the training data
+            model.set_params(**gs.best_params_)  # Set the best parameters found by GridSearchCV on the model
 
             model.fit(X_train, y_train)  # Train the model on the training data
 
