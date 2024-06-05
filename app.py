@@ -54,4 +54,4 @@ def predict_datapoint():
 # Run the Flask application
 if __name__ == "__main__":
     # The application will run on the host '0.0.0.0'
-    app.run(host="0.0.0.0",debug=True)
+    app.run(host="0.0.0.0")
